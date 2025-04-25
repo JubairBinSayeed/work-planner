@@ -1,4 +1,4 @@
-
+import pen from "../../assets/pen.png"
 
 const AssignTasksCard = () => {
     return (
@@ -49,7 +49,7 @@ const AssignTasksCard = () => {
 
 
     <div className="mt-6">
-      <button className=" btn btn-block bg-blue-500 border-blue-500 hover:bg-blue-600 hover:border-blue-600 transition font-bold text-xl text-white">Finalise Task</button>
+      <button className=" btn btn-block bg-blue-500 border-blue-500 hover:bg-blue-600 hover:border-blue-600 transition font-bold text-xl text-white"><img src={pen} alt="pen can not be found" className="w-5 h-5" />  Finalise Task</button>
     </div>
   </div>
 </div>
