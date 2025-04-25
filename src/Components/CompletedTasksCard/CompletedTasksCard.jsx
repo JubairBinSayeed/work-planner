@@ -2,7 +2,7 @@ import bin from "../../assets/bin.png"
 import bin2 from "../../assets/bin2.png"
 const CompletedTasksCard = () => {
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-96 bg-base-100 shadow-xl ">
   <div className="card-body">
     <span className="badge badge-xs badge-success">Completed Or Unwanted tasks appear HERE:</span>
     <div className="flex justify-between">
