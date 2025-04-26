@@ -1,0 +1,8 @@
+~*Work Planner List*~
+1. Onclicked , show date on assign list --  Not Done
+2. Implement Assign Task --  Not Done
+3. After task is assigned then task title and description will clear --  Not Done
+4. Implement completed task --  Not Done
+5. Implement holding task --  Not Done
+6. Implement localstorage on holding task --  Not Done
+7. Implement localstorage on completed task --  Not Done

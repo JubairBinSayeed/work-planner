@@ -1,59 +1,54 @@
-import pen from "../../assets/pen.png"
+import { format, isValid } from "date-fns";
+import pen from "../../assets/pen.png";
 
-const AssignTasksCard = () => {
-    return (
-        <div className="card w-96 bg-base-100 shadow-xl">
-  <div className="card-body">
-    <span className="badge badge-xs badge-success">You Have To Assign Tasks HERE</span>
-    <div className="flex justify-between">
-      <h2 className="text-3xl font-bold">Assign Tasks:</h2>
+const AssignTasksCard = ({ selectedDate }) => {
+  const validDate = isValid(new Date(selectedDate)) ? new Date(selectedDate) : null;
+
+  return (
+    <div className="w-full max-w-sm mx-auto p-4">
+      <div className="card bg-base-100 shadow-xl rounded-2xl p-4">
+        <div className="card-body flex flex-col h-full">
+
+          {/* Badge */}
+          <span className="badge badge-success self-start text-xs mb-2">
+            Assign New Task
+          </span>
+
+          {/* Title */}
+          <h2 className="text-2xl font-bold text-center mb-4">
+            Assign Tasks
+          </h2>
+
+          {/* Selected Date */}
+          {validDate ? (
+            <h3 className="text-blue-600 text-center text-sm font-semibold mb-6">
+              {format(validDate, "EEEE, MMMM d, yyyy")}
+            </h3>
+          ) : (
+            <h3 className="text-red-500 text-center text-sm font-semibold mb-6">
+              Invalid Date
+            </h3>
+          )}
+
+          {/* Inputs */}
+          <label className="input mb-4">
+            <input type="text" required placeholder="Task Title..." />
+          </label>
+
+          <label className="input mb-6">
+            <input type="text" required placeholder="Describe Your Task..." />
+          </label>
+
+          {/* Submit Button */}
+          <button className="btn btn-block bg-blue-500 border-blue-500 hover:bg-blue-600 hover:border-blue-600 transition font-bold text-white text-lg flex items-center justify-center">
+            <img src={pen} alt="Pen Icon" className="w-5 h-5 mr-2" />
+            Finalize Task
+          </button>
+
+        </div>
+      </div>
     </div>
-    <label className="input">
-    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <g
-      strokeLinejoin="round"
-      strokeLinecap="round"
-      strokeWidth="2.5"
-      fill="none"
-      stroke="currentColor"
-    >
-      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-    </g>
-  </svg>
-  <input
-    type="text"
-    required
-    placeholder="Task Title..."
-  />
-</label>
-<label className="input">
-    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <g
-      strokeLinejoin="round"
-      strokeLinecap="round"
-      strokeWidth="2.5"
-      fill="none"
-      stroke="currentColor"
-    >
-      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-    </g>
-  </svg>
-  <input
-    type="text"
-    required
-    placeholder="Describe Your Task..."
-  />
-</label>
-
-
-    <div className="mt-6">
-      <button className=" btn btn-block bg-blue-500 border-blue-500 hover:bg-blue-600 hover:border-blue-600 transition font-bold text-xl text-white"><img src={pen} alt="pen can not be found" className="w-5 h-5" />  Finalise Task</button>
-    </div>
-  </div>
-</div>
-    );
+  );
 };
 
 export default AssignTasksCard;

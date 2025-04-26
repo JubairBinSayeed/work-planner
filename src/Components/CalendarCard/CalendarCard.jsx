@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, addMonths, subMonths, isSameMonth, isSameDay } from "date-fns";
+import AssignTasksCard from "../AssignTasksCard/AssignTasksCard";
 
 export default function CalendarCard() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -7,14 +8,20 @@ export default function CalendarCard() {
 
   const renderHeader = () => {
     return (
-      <div className="flex justify-between items-center p-4 border-b">
-        <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
+      <div className="flex justify-between items-center p-4 ">
+        <button
+          onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
+          className="text-blue-500 font-semibold hover:underline dark:text-blue-300"
+        >
           Prev
         </button>
-        <h2 className="text-xl font-semibold">
+        <h2 className="text-xl font-semibold ">
           {format(currentMonth, "MMMM yyyy")}
         </h2>
-        <button onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>
+        <button
+          onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
+          className="text-blue-500 font-semibold hover:underline dark:text-blue-300"
+        >
           Next
         </button>
       </div>
@@ -28,7 +35,7 @@ export default function CalendarCard() {
 
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div key={i} className="text-center font-medium">
+        <div key={i} className="text-center font-medium text-sm dark:text-gray-200">
           {format(addDays(startDate, i), dateFormat)}
         </div>
       );
@@ -54,11 +61,11 @@ export default function CalendarCard() {
         const cloneDay = day;
         days.push(
           <div
-            className={`p-2 w-10 h-10 flex items-center justify-center text-center cursor-pointer transition-all duration-150 rounded-full hover:outline hover:outline-blue-400 ${
-              !isSameMonth(day, monthStart) ? "text-gray-400" : ""
+            className={`p-2 w-12 h-12 flex items-center justify-center text-center cursor-pointer transition-all duration-150 rounded-full hover:outline hover:outline-blue-400 dark:hover:outline-gray-500 ${
+              !isSameMonth(day, monthStart) ? "text-gray-400 dark:text-gray-600" : ""
             } ${
               isSameDay(day, selectedDate)
-                ? "bg-blue-500 text-white outline  outline-blue-500"
+                ? "bg-blue-500 text-white outline outline-blue-500 dark:bg-blue-600"
                 : ""
             }`}
             key={day}
@@ -70,7 +77,7 @@ export default function CalendarCard() {
         day = addDays(day, 1);
       }
       rows.push(
-        <div className="grid grid-cols-7" key={day}>
+        <div className="grid grid-cols-7 gap-1" key={day}>
           {days}
         </div>
       );
@@ -80,10 +87,15 @@ export default function CalendarCard() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 shadow-xl">
+    <div className="max-w-md mx-auto mt-10 shadow-xl rounded-lg bg-base-100 dark:bg-base-200">
       {renderHeader()}
       {renderDays()}
       {renderCells()}
+      {selectedDate && (
+        <div className="p-4">
+          <AssignTasksCard selectedDate={selectedDate} />
+        </div>
+      )}
     </div>
   );
 }
